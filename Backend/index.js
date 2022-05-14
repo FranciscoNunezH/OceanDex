@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const globalVar = require("./global");
 const app = require("./app");
-const connectionString = `mongodb+srv://JosAnGoCa:${globalVar.password}@cluster0.ylyl9.mongodb.net/OceanDexDB?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://${globalVar.user}:${globalVar.password}@cluster0.ylyl9.mongodb.net/OceanDexDB?retryWrites=true&w=majority`;
 
 mongoose
     .connect(connectionString)

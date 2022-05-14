@@ -1,7 +1,8 @@
 "use strict";
 
-const mongoose = require("mongoose");
 const dataModel = require("../models/data.model");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 var controller = {
     getData: (req, res) => {
@@ -43,7 +44,46 @@ var controller = {
         });
     },
 
-    getDataImagen: (req, res) => {},
+    getDataImagen: (req, res) => {
+        let Nombre_cientifico = req.params.nombreCientifico;
+
+        dataModel.findOne({ Nombre_cientifico }).exec((err, dato) => {
+            if (err)
+                return res
+                    .status(500)
+                    .send({ message: "Ha ocurrido un error" });
+
+            if (!dato)
+                return res.status(404).send({
+                    message:
+                        "Ha ocurrido un error: Animal de la busqueda no encontrado",
+                });
+
+            axios.get(dato.URL_Enciclovida).then((response) => {
+                const html = response.data;
+                const $ = cheerio.load(html);
+
+                $("a.dropdown-item:contains('Naturalista')", html).each(
+                    function () {
+                        let urlImg = $(this).attr("href");
+                        urlImg = urlImg.split("/");
+
+                        axios
+                            .get(
+                                "https://api.inaturalist.org/v1/taxa/" +
+                                    urlImg[urlImg.length - 1]
+                            )
+                            .then((response) => {
+                                return res.status(200).send({
+                                    img: response.data.results[0]
+                                        .taxon_photos[0].photo.original_url,
+                                });
+                            });
+                    }
+                );
+            });
+        });
+    },
 
     setData: (req, res) => {
         var data = new dataModel();
