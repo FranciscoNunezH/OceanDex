@@ -11,7 +11,7 @@ mongoose
         console.log(
             "Coneccion a la base de datos OceanDexDB establecida satisfactoriamente"
         );
-        app.listen(globalVar.port, () => {
+        app.listen(process.env.PORT || globalVar.port, () => {
             console.log(
                 `Servidor corriendo correctamente en la url: localhost:${globalVar.port}`
             );
