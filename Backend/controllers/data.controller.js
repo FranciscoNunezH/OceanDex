@@ -25,7 +25,6 @@ var controller = {
 
     getDataEspecifica: (req, res) => {
         let Nombre_cientifico = req.params.nombreCientifico;
-        console.log(Nombre_cientifico);
 
         dataModel.findOne({ Nombre_cientifico }).exec((err, dato) => {
             if (err)
@@ -40,6 +39,24 @@ var controller = {
                 });
 
             let datosLimpios = limpiarDatos(dato);
+
+            return res.status(200).send(datosLimpios);
+        });
+    },
+
+    getDataNombres: (req, res) => {
+        dataModel.find().exec((err, datos) => {
+            if (err)
+                return res
+                    .status(500)
+                    .send({ message: "Ha ocurrido un error" });
+
+            if (!datos)
+                return res.status(404).send({
+                    message: "Ha ocurrido un error: Datos no encontrados",
+                });
+
+            let datosLimpios = limpiarNombres(datos);
 
             return res.status(200).send(datosLimpios);
         });
@@ -60,7 +77,7 @@ var controller = {
                         "Ha ocurrido un error: Animal de la busqueda no encontrado",
                 });
 
-            axios.get(dato.URL_Enciclovida).then(response => {
+            axios.get(dato.URL_Enciclovida).then((response) => {
                 const html = response.data;
                 const $ = cheerio.load(html);
 
@@ -74,7 +91,7 @@ var controller = {
                                 "https://api.inaturalist.org/v1/taxa/" +
                                     urlImg[urlImg.length - 1]
                             )
-                            .then(response => {
+                            .then((response) => {
                                 return res.status(200).send({
                                     img: response.data.results[0]
                                         .taxon_photos[0].photo.original_url,
@@ -145,6 +162,8 @@ var controller = {
         var body = req.body;
         var Nombre_cientifico = body.especievalidabusqueda;
 
+        console.log(body);
+
         dataModel
             .updateOne(
                 { Nombre_cientifico },
@@ -169,10 +188,10 @@ var controller = {
     },
 };
 
-const limpiarDatos = arr => {
+const limpiarDatos = (arr) => {
     if (arr.length != undefined) {
         let newArr = [];
-        arr.forEach(dato => {
+        arr.forEach((dato) => {
             newArr.push({
                 Nombre_cientifico: dato.Nombre_cientifico,
                 Nombres_comunes: dato.Nombres_comunes,
@@ -235,6 +254,17 @@ const limpiarDatos = arr => {
             Ejemplares: arr.Ejemplares,
         };
     }
+};
+
+const limpiarNombres = (arr) => {
+    let newArr = [];
+    arr.forEach((dato) => {
+        newArr.push({
+            Nombre_cientifico: dato.Nombre_cientifico,
+            Nombres_comunes: dato.Nombres_comunes,
+        });
+    });
+    return newArr;
 };
 
 module.exports = controller;

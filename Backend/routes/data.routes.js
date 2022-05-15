@@ -7,6 +7,7 @@ var router = express.Router();
 
 router.get("/consultar", dataController.getData);
 router.get("/consultar/:nombreCientifico", dataController.getDataEspecifica);
+router.get("/consultar-nombres", dataController.getDataNombres);
 router.get("/consultar/img/:nombreCientifico", dataController.getDataImagen);
 router.post("/guardar", dataController.setData);
 router.post("/guardar/ejemplar", dataController.setDataEjemplares);
