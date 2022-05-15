@@ -1,0 +1,62 @@
+#map { 
+    margin-top: 15px;
+    height: 60%;
+    opacity: 0.5;
+}
+
+body {
+	background: linear-gradient(-45deg, #303841, #3A4750, #30475E, #444444);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.bottom {
+    position:fixed;
+    bottom: 2px;
+}
+
+.text-Color{
+    color:#F9F7F7
+}
+
+.nav-link {
+    color: #F9F7F7;
+}
+
+hr.style { 
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+  }
+
+h1{
+    font-family: 'Oswald', sans-serif;
+}
+
+@font-face {
+    font-family: 'FAMILY_NAME';
+    src: url(FONT_FILE_NAME.woff2) format('woff2');
+    font-family: 'Anek Odia', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
+   }
+
+
+
+ 
