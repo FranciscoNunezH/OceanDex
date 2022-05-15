@@ -65,6 +65,7 @@
             tipocoleccion: Number,
             idnombrecatvalido: String
         },
+        ...
     ],
 }
 ```
@@ -173,9 +174,11 @@
                 "id": Number,
                 "tipocoleccion": Number,
                 "idnombrecatvalido": String
-            }
+            },
+            ...
         ]
-    }
+    },
+    ...
 ]
 
 ```
@@ -259,7 +262,8 @@
     {
         "Nombre_cientifico": String,
         "Nombres_comunes": String,
-    }
+    },
+    ...
 ]
 ```
 
