@@ -162,8 +162,6 @@ var controller = {
         var body = req.body;
         var Nombre_cientifico = body.especievalidabusqueda;
 
-        console.log(body);
-
         dataModel
             .updateOne(
                 { Nombre_cientifico },

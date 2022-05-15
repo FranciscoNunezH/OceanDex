@@ -248,6 +248,21 @@
 }
 ```
 
+#### Consultar la una lista con los nombres cientificos y comunes
+
+-   Metodo: GET
+-   URL: https://ocean-dex-api.herokuapp.com/api/consultar-nombres/{Nombre cientifico}
+-   Respuesta:
+
+```
+[
+    {
+        "Nombre_cientifico": String,
+        "Nombres_comunes": String,
+    }
+]
+```
+
 #### Consultar la imagen de una especie por nombre cientifico
 
 -   Metodo: GET
