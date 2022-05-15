@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./elements/bandera.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a4b5a14363.js" crossorigin="anonymous"></script>
+    <title>Hack the Ocean</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">                      <!Barra de navegacion>
+            <div class="logo-icon">
+                <img src="./elements/bandera.png" alt="" height="50px" width="50px">
+                <a href="index.html" class="logo nav-link">Hack The Ocean</a>
+            </div>
+            <button class="nav-toggle" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    
+    <div class="contenedor-input">
+        <input class="input-class" type="text" placeholder="Enter a name or number" id="pokeName" name="pokename"> <!El id es un identificador para poder usarlo en otras funciones, en este caso en js>
+        <div class="button-class" onclick="fetch2Pokemon()"> Search</div> <!Imprime una funcion definida en js>
+    </div>    
+
+    <!--Desde esta parte empieza el contenedor donde se muestra la informacion-->
+    <section class="contenedor">
+        <div class="cuerpo">
+
+            <div class="parent">
+                <div>
+                    <div class="numero">
+                        <h3>#</h3>
+                        <p id="numero"></p>
+                    </div>
+                    <img class="imagen-poke" src="./elements/Vaquita.png" alt="Pokebola" id="pokeImg" height="200px" width="200px">
+                </div>
+
+                <div class="grid2">
+
+                    <ul class="listas-l">   <!Podria haberse puesto en una display>
+                        <li>
+                            <ul class="lista">
+                                <li>
+                                    <p class="texto-lista">Animal: </p> 
+                                </li>
+                                <li>
+                                    <p class="texto-lista2" id="tipo">Nombre</p> 
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="lista">
+                                <li>
+                                    <p class="texto-lista">Especie: </p> 
+                                </li>
+                                <li>
+                                    <p class="texto-lista2" id="type">Nombre</p> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3 class="about">Datos de la especie</h3>
+
+                    <div class="parent3">
+                        <div>
+                            <ul class="ul-stats">
+                                <li class="texto-stats">
+                                    <p>Nombre Cientifico: </p>
+                                </li>
+                                <!--<li class="texto-stats">
+                                    <p>Nombre comun: </p>
+                                </li>-->
+                                <li class="texto-stats">
+                                    <p>Familia: </p>
+                                </li>
+                                <li class="texto-stats">
+                                    Especie: 
+                                </li>
+                                <li class="texto-stats">
+                                    <p>Ambiente: </p>
+                                </li>
+                                <li class="texto-stats">
+                                    <p>Numero de registros: </p>
+                                </li>
+                                <li class="texto-stats">
+                                    <p>identificador: </p>
+                                </li>
+                                <li class="texto-stats">
+                                    <p>Estatus: </p>
+                                </li>
+                                <li class="texto-stats">
+                                    <p>Ejemplares: </p>
+                                </li>
+                                <li class="texto-stats">
+                                    <p>Nombre Comun: </p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>   
+                                <ul class="ul-stats">
+                                    <li class="texto-stats">
+                                        <p id="N_Ci">.</p>
+                                    </li>
+                                    <!--<li class="texto-stats">
+                                        <p id="N_Co">.</p>
+                                    </li>-->
+                                    <li class="texto-stats">
+                                        <p id="familia">.</p>
+                                    </li>
+                                    <li class="texto-stats">
+                                        <p id="type2">.</p> 
+                                    </li>
+                                    <li class="texto-stats">
+                                        <p id="ambiente">.</p>
+                                    </li>
+                                    <li class="texto-stats">
+                                        <p id="Num_Re">.</p>
+                                    </li>
+
+                                    <li class="texto-stats">
+                                        <p id="ID">.</p>
+                                    </li>
+                                    <li class="texto-stats">
+                                        <p id="Estatus">.</p>
+                                    </li>
+                                    <li class="texto-stats">
+                                        <p id="Ejemplares">.</p>
+                                    </li>
+                                    <li class="texto-stats">
+                                        <p id="N_Co">.</p>
+                                    </li>
+                                </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>   
+    </section>
+    <!--Aqui termina el contenedor-->
+</body>
+<footer>
+    <script src="pokedex3.js"></script>
+</footer>
+</html>

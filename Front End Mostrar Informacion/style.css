@@ -1,0 +1,638 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    zoom: -90%;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: rgb(179, 228, 247);
+    /*padding: 100px 0px 0;      /*Acomodamos el tamano del header con respecto al texto*/
+    background-image: url(https://wallup.net/wp-content/uploads/2016/05/24/143432-nature-Pokemon.jpg);
+}
+
+.header{
+    background-color: purple;
+    opacity: 95%;
+    height: 100px;
+    /*Fija el header para siempre este arriba */
+    /*position: absolute*/
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2; /*Hace que este elemente este por detras del z-index: 1*/
+}
+
+.nav{
+    /* Va a hacer que el logo este a la izquierda y los elementos a la derecha*/
+    display: flex;
+    /*justify-content: space-between;*/
+
+    /*max-width: 992px;*/ /*Hace que la separacion entre el logo y los elementos sea definida*/
+    /*margin: 0 auto;*/ /*Centra los elementos, el 0 es arriba y abajo y el auto es derecha e izquierda*/
+}
+
+.nav-link{
+    /*Decoracion de los elementos del header*/
+    color: skyblue;
+    text-decoration: none;
+}
+
+.nav-link2{
+    /*Decoracion de los elementos del header*/
+    color: grey;
+    text-decoration: none;
+}
+
+.nav-link3{
+    /*Decoracion de los elementos del header*/
+    color: white;
+    text-decoration: none;
+}
+
+.logo{
+    font-size: 35px;    /*Aumenta el tamano del logo del header*/
+    font-weight: bold;  /*Pone en negritas el logo*/
+    padding: 0 10px;    /*Hace que el logo se separe del lado izquierdo a la derecha un poco*/
+    line-height: 120px;  /*Hace que el logo se separe de la parte superior hacia abajo un poco*/
+}
+
+.nav-menu{
+    display: flex; /*Hace que los elementos del header queden en posicion horizontal*/
+    margin-right: 100px; /*Hace que los elementos queden separados de la derecha*/
+    list-style: none;   /*Quita los puntos de los elementos del header*/
+}
+
+.nav-menu-item{
+    font-size: 18px;
+    margin: 0 17px; /*Agrega un margen (Separacion) horizontal entre los elementos del header*/
+    line-height: 110px; /*Hace que los elementos del header se separes de la parte superior hacia abajo un poco*/
+    text-transform: uppercase;  /*Hace mayusculas las letras de los elementos del header.*/
+    width: max-content; /*No corta el contenido cuando se acorta la pagina*/
+}
+
+/*Decoracion del hover*/
+.nav-menu-link{
+    padding: 15px 12px;  /*Tamano del recuadro que se remarca cuando pasas el raton por encima*/
+    border-radius: 5px; /*Agrega un radio al borde*/
+}
+
+/*Cuando pasas el raton encima de los elementos se remarcan*/
+.nav-menu-link:hover,
+.nav-menu-link_active{
+    background-color: purple;
+    box-shadow: 0 0 4px 0 black;
+    transition: .5s; /*Delay de .5s para la animacion*/
+}
+
+/*Icono del header, barras*/
+.nav-toggle{
+    color: purple;
+    background: none; /*Quita el fondo del icono*/
+    border: none;     /*Quita los bordes del icono*/     
+    font-size: 30px;  /*Cambia el tamano del icono*/  
+    padding: 0 20px;  
+    line-height: 60px;
+    cursor: pointer; /*Remarca cuando das click en el icono*/
+
+    display: none;  /*No se va a observar cuando estemos en escritorio*/
+}
+
+/*Cuando tenemos menos de 768px se ejecuta lo que esta en este media*/
+@media (max-width: 768px){
+    body{
+        padding-top: 0px;
+    }
+
+    .header{
+        height: 60px;
+    }
+    
+    .logo{
+        font-size: 25px;    /*Cambia el tamano del logo del header*/
+        padding: 0 20px;    /*Hace que el logo se separe del lado izquierdo a la derecha un poco*/
+        line-height: 60px;  /*Hace que el logo se separe de la parte superior hacia abajo un poco*/
+    }
+    
+    .nav-menu{
+        flex-direction: column; /*Los elementos del header se encontraran uno encima del otro*/
+        align-items: center;    /*Centramos los elementos del header*/
+        margin: 0;
+        /*margin-right: 20px;*/ /*Hace que los elementos queden separados de la derecha*/
+        background-color: #2c3e50; 
+        position: fixed; /*Hace que la posicion no dependa de donde se encuentra, si no que lo haga de la ventana donde se encuentre.*/
+        left: 0;
+        top: 60px;       /*Da la altura del menu desplegable con respecto al header*/
+        width: 100%; /*Ancho del header*/
+        padding: 20px 0; /*Elimina el padding que anade el navegador*/
+
+        /*Anade una barra de scroll automaticamente cuando la necesite*/
+        height: calc(100%-60px);
+        overflow-y: auto;
+
+        left: 100%; /*Va a estar a la derecha cuando esta inactivo*/
+        transition: left 0.3s; /*Cuando se haga left va a tener la transicion de 0.3s*/
+    }
+    
+    .nav-menu-item{
+        line-height: 70px; /*Hace que los elementos del header se separes de la parte superior hacia abajo un poco*/
+    }
+
+    .nav-menu-link:hover,   /*Para separar los selectores siempre debe llevar la coma*/
+    .nav-menu-link_active{
+        background: none;
+        color: #83c5f7;
+    }
+
+    /*Icono del header, barras*/
+    .nav-toggle{
+        display: none;  /*se va a observar cuando estemos en movil*/
+    }
+
+    .nav-menu_visible{
+        left: 0; /*Va a volver a su posicion original cuando esta activo*/
+    }
+
+    /**/
+    .nav-toggle:focus:not(:focus-visible){
+        outline: none;
+    }
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.logo-icon{
+    padding: 0 100px;
+}
+
+
+
+.cuerpo{
+    background-color: #DBE2EF;
+    height: 700px;
+    width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.superior{
+    height: 50px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;    
+    /*padding: 0 125px;*/
+}
+
+.imagen-poke{
+    margin-top: 100px;
+}
+
+.input-class{
+    height: 40px;
+    width: 700px;
+    position: relative;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-class{
+    background-color: purple;
+    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 0px 10px;
+    height: 40px;
+    width: 180px;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.listas-l{
+    list-style: none;
+    display: flex;
+    /*align-items: center;
+    text-align: center;*/
+}
+
+.lista{
+    display: flex;
+    align-items: center;
+    
+    list-style: none;
+}
+
+.texto-lista{
+    color: black;
+    margin: 0 5px 0 0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.texto-lista2{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.grid2{
+    margin: 10px 10px;  /*Arriba y abajo*/
+    padding: 50px;
+    height: 680px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.contenedor-input{
+    margin-top: 100px;
+    padding: 20px 500px;
+    position: relative;
+    display: flex;
+}
+
+.about{
+    color: #112D4E;
+    margin-top: 50px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.parent2 {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;    
+    /*padding: 0 125px;*/
+}
+
+.vertical{
+    margin-top: -50px;
+    background-color: grey;
+    height: 100px;
+    width: 2px;
+}
+
+.special-contenedor{
+    /*background-color: skyblue;*/
+    height: 50px;    
+    /*overflow-y: hidden;*/
+    /*height: calc(100%-60px);*/
+    /*overflow-y: auto;*/
+}
+
+.habilidades-contenedor{
+    /*background-color: skyblue;*/
+    margin-left: 10px;
+    height: 100px;  
+    width: auto;  
+    /*overflow-y: hidden;*/
+    height: calc(100%-60px);
+    overflow-y: auto;
+}
+
+.movements{
+    color: blueviolet;
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.lista-habilidades{
+    list-style: none;
+    /*overflow: scroll;*/
+}
+
+.ul-about{
+    display: flex;
+    list-style: none;
+    margin-top: 20px;
+    padding-left: 60px;
+}
+
+.texto{
+    margin-top: 10px;
+}
+
+.numero{
+    padding: 20px 20px;
+    display: flex;
+    color: #112D4E;
+}
+
+.stats{
+    color: blueviolet;
+    margin-top: 0px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.Load-bar{
+    width: 90%;
+    background-color: skyblue;
+    height: 10px;
+    position: relative;
+    margin: 20px;
+    display: block;
+    border-radius: 3px;
+}
+
+.progress{
+    display: block;
+    background-color: purple;
+    height: 10px;
+    width: 0;
+}
+
+.progress2{
+    display: block;
+    background-color: purple;
+    height: 10px;
+    width: 0;
+}
+
+.progress3{
+    display: block;
+    background-color: purple;
+    height: 10px;
+    width: 0;
+}
+
+.progress4{
+    display: block;
+    background-color: purple;
+    height: 10px;
+    width: 0;
+}
+
+.progress5{
+    display: block;
+    background-color: purple;
+    height: 10px;
+    width: 0;
+}
+
+.progress6{
+    display: block;
+    background-color: purple;
+    height: 10px;
+    width: 0;
+}
+
+.parent3 {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 1fr;
+    grid-template-columns: auto left;
+    /*grid-column-gap: 20px;*/
+    grid-row-gap: 0px;    
+    /*padding: 0 125px;*/
+}
+
+.ul-stats{
+    text-align: left;
+    list-style: none;
+    margin: 0 -40px;
+}
+
+.texto-stats{
+    /*justify-content: left;*/
+    /*margin-right: 200px;*/
+    line-height: 40px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #112D4E;
+}
+
+.acomodar{
+    margin-top: -10px;
+}
+
+@media (max-width: 1785px){
+    .logo-icon{
+        padding: 0 100px;
+    }
+    .button-class{
+        /*background-color: rgb(88, 137, 226);*/
+        color: white;
+        border-radius: 8px;
+        /*padding: 0px;*/
+        margin: 0px 10px;
+        height: 40px;
+        width: auto;
+        text-align: center;
+        align-items: center;
+        text-decoration: none;
+        font-weight: bold;
+        /*cursor: pointer;*/
+    }
+}    
+
+/*///////////////////////////////////////////////////////////////Responsive///////////////////////////////////////////////////////////////////////*/
+@media (max-width: 1214px){
+    .logo-icon{
+        padding: 0 100px;
+    }
+    
+    
+    
+    .cuerpo{
+        /*background-color: rgb(88, 137, 226);*/
+        height: auto;
+        width: 700px;
+        margin: 0 auto 0 auto;
+        /*margin-left: 150px;*/
+        align-items: center;
+        text-align: center;
+        border-radius: 10px;
+    }
+    
+    .superior{
+        height: 50px;
+    }
+    
+    .parent {
+        display: block;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 0px;    
+        /*padding: 0 125px;*/
+    }
+    
+    .imagen-poke{
+        margin-top: 100px;
+    }
+    
+    .input-class{
+        height: 40px;
+        width: 700px;
+        position: relative;
+        margin-bottom: 30px;
+        border: none;
+        border-radius: 5px;
+    }
+    
+    .button-class{
+        /*background-color: rgb(88, 137, 226);*/
+        color: white;
+        border-radius: 8px;
+        /*padding: 0px;*/
+        margin: 0px 10px;
+        height: 40px;
+        width: auto;
+        text-align: center;
+        align-items: center;
+        text-decoration: none;
+        font-weight: bold;
+        /*cursor: pointer;*/
+    }
+    
+    .listas-l{
+        list-style: none;
+        display: flex;
+        /*align-items: center;
+        text-align: center;*/
+    }
+    
+    .lista{
+        display: flex;
+        align-items: center;
+        
+        list-style: none;
+    }
+    
+    .texto-lista{
+        color: black;
+        margin: 0 5px 0 0;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
+    .texto-lista2{
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+        margin: 5px;
+    }
+    
+    .grid2{
+        margin: 10px auto;  /*Arriba y abajo*/
+        padding: 50px;
+        height: 680px;
+        width: 600px;
+        background-color: white;
+        border-radius: 10px;
+    }
+    
+    .contenedor-input{
+        padding: 0px 250px;
+        position: relative;
+        display: flex;
+    }
+    
+    .about{
+        color: #112D4E;
+        margin-top: 50px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-size: 25px;
+    }
+    
+    .parent2 {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 0px;    
+        /*padding: 0 125px;*/
+    }
+    
+    .ul-about{
+        display: flex;
+        list-style: none;
+        margin-top: 20px;
+        padding-left: 60px;
+    }
+    
+    .texto{
+        margin-top: 10px;
+    }
+    
+    /*
+    .numero{
+        padding: 20px 20px;
+        display: flex;
+        color: purple;
+    }*/
+    
+    .stats{
+        color: blueviolet;
+        margin-top: 20px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-size: 25px;
+    }
+    
+    .Load-bar{
+        width: 50%;
+        background-color: skyblue;
+        height: 10px;
+        position: relative;
+        margin: 20px;
+        display: block;
+    }
+    
+    .progress{
+        display: block;
+        background-color: purple;
+        height: 10px;
+        width: 0;
+    }
+    
+    .parent3 {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: 1fr;
+        grid-template-columns: auto left;
+        /*grid-column-gap: 20px;*/
+        grid-row-gap: 0px;    
+        /*padding: 0 125px;*/
+    }
+    
+    .ul-stats{
+        list-style: none;
+        margin: 0 -40px;
+    }
+    
+    .texto-stats{
+        line-height: 30px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    
+    .acomodar{
+        margin-top: -10px;
+    }
+}  
