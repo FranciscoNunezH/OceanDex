@@ -40,7 +40,15 @@ var controller = {
 
             let datosLimpios = limpiarDatos(dato);
 
-            return res.status(200).send(datosLimpios);
+            let URL_Enciclovida = datosLimpios.URL_Enciclovida.split("/");
+            let codigo = URL_Enciclovida[URL_Enciclovida.length - 1].split("-");
+
+            let ejemplares_url = `https://enciclovida.mx/especies/${codigo[0]}/consulta-registros.json?coleccion=snib&formato=json`;
+
+            axios.get(ejemplares_url).then((response) => {
+                datosLimpios.Ejemplares = response.data;
+                return res.status(200).send(datosLimpios);
+            });
         });
     },
 
@@ -92,10 +100,23 @@ var controller = {
                                     urlImg[urlImg.length - 1]
                             )
                             .then((response) => {
-                                return res.status(200).send({
-                                    img: response.data.results[0]
-                                        .taxon_photos[0].photo.original_url,
-                                });
+                                if (
+                                    response.data.results[0] &&
+                                    response.data.results[0].taxon_photos[0] &&
+                                    response.data.results[0].taxon_photos[0]
+                                        .photo &&
+                                    response.data.results[0].taxon_photos[0]
+                                        .photo.original_url
+                                ) {
+                                    return res.status(200).send({
+                                        img: response.data.results[0]
+                                            .taxon_photos[0].photo.original_url,
+                                    });
+                                } else {
+                                    return res.status(200).send({
+                                        img: "",
+                                    });
+                                }
                             });
                     }
                 );
@@ -137,12 +158,6 @@ var controller = {
         data.URL_Enciclovida = body["URL Enciclovida"];
         data.Bibliografía = body["Bibliografía"];
 
-        if (body.Ejemplares) {
-            data.Ejemplares = body.Ejemplares;
-        } else {
-            data.Ejemplares = [];
-        }
-
         data.save((err, save) => {
             if (err)
                 return res.status(500).send({ message: "Error al guardar" });
@@ -161,6 +176,8 @@ var controller = {
     setDataEjemplares: (req, res) => {
         var body = req.body;
         var Nombre_cientifico = body.especievalidabusqueda;
+
+        console.log(body);
 
         dataModel
             .updateOne(
@@ -217,7 +234,6 @@ const limpiarDatos = (arr) => {
                 Estatus: dato.Estatus,
                 URL_Enciclovida: dato.URL_Enciclovida,
                 Bibliografía: dato.Bibliografía,
-                Ejemplares: dato.Ejemplares,
             });
         });
 
@@ -249,7 +265,7 @@ const limpiarDatos = (arr) => {
             Estatus: arr.Estatus,
             URL_Enciclovida: arr.URL_Enciclovida,
             Bibliografía: arr.Bibliografía,
-            Ejemplares: arr.Ejemplares,
+            Ejemplares: [],
         };
     }
 };
