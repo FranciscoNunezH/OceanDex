@@ -251,7 +251,7 @@
 #### Consultar la una lista con los nombres cientificos y comunes
 
 -   Metodo: GET
--   URL: https://ocean-dex-api.herokuapp.com/api/consultar-nombres/{Nombre cientifico}
+-   URL: https://ocean-dex-api.herokuapp.com/api/consultar-nombres
 -   Respuesta:
 
 ```
