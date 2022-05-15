@@ -64,14 +64,21 @@ header {
 
 #header {
     padding: 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 h1.title {
-    font-size: calc(1.625rem + 4.5vw);
+    font-size: calc(1.625rem + 4vw);
     font-weight: 100;
-    justify-content: center;
-    text-align: center;
     color: var(--blanco);
+}
+
+img.logo-oceandex {
+    height: calc(1.625rem + 4.6vw);
+    margin-left: 30px;
 }
 
 /* * CONTENIDO */

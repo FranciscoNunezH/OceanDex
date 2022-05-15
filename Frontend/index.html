@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>OceanDex Test Document</title>
-
+        <title>OceanDex</title>
         <link rel="stylesheet" href="styles/styles.css" />
     </head>
     <body>
         <!-- * HEADER -->
         <header>
             <div class="limitador" id="header">
+                <img
+                    class="logo-oceandex"
+                    src="src/img/MicrosoftTeams-image.png"
+                    alt="OceanDex logo"
+                />
                 <h1 class="title">OceanDex</h1>
             </div>
         </header>
@@ -23,8 +27,9 @@
                     <input type="input" placeholder="Filtrar por nombre" />
                     <button>Filtrar</button>
                 </div>
-                <div class="container-spinner">
-                    <div id="contenedor-especies">
+
+                <div id="contenedor-especies">
+                    <div class="container-spinner">
                         <div class="cargando"></div>
                     </div>
                 </div>
@@ -37,14 +42,19 @@
         <footer>
             <div class="limitador" id="footer">
                 <ul class="footer-links">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Api</a></li>
-                    <li><a href="#">Equipo</a></li>
+                    <li><a href="./">Inicio</a></li>
+                    <li>
+                        <a
+                            href="https://github.com/FranciscoNunezH/OceanDex/tree/main/Backend"
+                            >Api</a
+                        >
+                    </li>
+                    <li><a href="./equipo.html">Equipo</a></li>
                     <li><a href="#">LaunchX</a></li>
-                    <li><a href="#">Acerca de</a></li>
                 </ul>
             </div>
         </footer>
+
         <script src="scripts/script.js"></script>
     </body>
 </html>

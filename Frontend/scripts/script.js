@@ -6,31 +6,47 @@ fetch("https://ocean-dex-api.herokuapp.com/api/consultar-nombres")
     })
     .then(data => {
         console.log(data);
+        cartas = "";
+        data.forEach(data => {
+            cartas += `
+            <a href="./info?nombre=${data.Nombre_cientifico}" class="card-especies">
+                <div class="card-especies_img">
+                    <img
+                        src="http://via.placeholder.com/250x338?text=?"
+                        alt="imagen ${data.Nombre_cientifico}"
+                    />
+                </div>
+                <div class="card-especies_nombre">
+                    ${data.Nombre_cientifico}
+                </div>
+            </a>`;
+        });
+        especiesContainer.innerHTML = cartas;
     });
 
 // especiesContainer.innerHTML = `
 // <a href="#" class="card-especies">
-//                         <div class="card-especies_img">
-//                             <img
-//                                 src="https://inaturalist-open-data.s3.amazonaws.com/photos/38667818/original.jpg?1557664973"
-//                                 alt="Nodilittorina ziczac"
-//                             />
-//                         </div>
-//                         <div class="card-especies_nombre">
-//                             Nodilittorina ziczac
-//                         </div>
-//                     </a>
-//                     <a href="#" class="card-especies">
-//                         <div class="card-especies_img">
-//                             <img
-//                                 src="https://inaturalist-open-data.s3.amazonaws.com/photos/38667818/original.jpg?1557664973"
-//                                 alt="Nodilittorina ziczac"
-//                             />
-//                         </div>
-//                         <div class="card-especies_nombre">
-//                             Nodilittorina ziczac
-//                         </div>
-//                     </a>
+//     <div class="card-especies_img">
+//         <img
+//             src="https://inaturalist-open-data.s3.amazonaws.com/photos/38667818/original.jpg?1557664973"
+//             alt="Nodilittorina ziczac"
+//         />
+//     </div>
+//     <div class="card-especies_nombre">
+//         Nodilittorina ziczac
+//     </div>
+// </a>
+// <a href="#" class="card-especies">
+//     <div class="card-especies_img">
+//         <img
+//             src="https://inaturalist-open-data.s3.amazonaws.com/photos/38667818/original.jpg?1557664973"
+//             alt="Nodilittorina ziczac"
+//         />
+//     </div>
+//     <div class="card-especies_nombre">
+//         Nodilittorina ziczac
+//     </div>
+// </a>
 // `;
 
 /*
