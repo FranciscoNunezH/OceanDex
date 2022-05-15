@@ -22,6 +22,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 
 # Instanciar un objeto con las opciones de Chrome, para definir el tamaño y la preferencias "sin cabecera"
 chrome_options = Options()
@@ -38,6 +39,8 @@ chrome_driver_path = dir + "\chromedriver.exe"
 driver = webdriver.Chrome(chrome_driver_path)
 driver.maximize_window()
 
+
+
 # Preguntamos al Usuario por el archivo
 root = tk.Tk()
 root.withdraw()
@@ -53,14 +56,21 @@ for value in lista:
     driver.get("https://enciclovida.mx/especies/{especie}".format( especie = value ))
     driver.implicitly_wait(10)
     try:
-        imgsrc = driver.find_element_by_xpath("/html/body/section/div/div[1]/div/div[3]/div/div/a[1]/img")
-        source = imgsrc.get_attribute("src")
-        print(value,source)
-        with open('data.txt', "a") as capturas:
-            capturas.write(value + ',' + source + '\n')
-            capturas.close()
-    except NoSuchElementException:
-        pass
+        WebDriverWait(driver, 1)\
+        .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                        'a.btn-title.px-1')))
+        try:
+            imgsrc = driver.find_element_by_xpath("/html/body/section/div/div[1]/div/div[3]/div/div/a[1]/img")
+            source = imgsrc.get_attribute("src")
+            print(value,source)
+            with open('data.txt', "a") as capturas:
+                capturas.write(value + ',' + source + '\n')
+                capturas.close()
+        except NoSuchElementException:
+            pass
+    except TimeoutException:
+        print("sin imagen para "+value)
+    
 
 
 input("Presiona Enter para terminar")
