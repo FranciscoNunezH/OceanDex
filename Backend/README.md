@@ -8,15 +8,15 @@
 
 ```
 {
-    "Nombre científico": String,
+    "Nombre cientifico": String,
     "Nombres comunes": String,
     "Reino": String,
-    "división": String,
+    "division": String,
     "phylum": String,
     "clase": String,
     "orden": String,
     "familia": String,
-    "género": String,
+    "genero": String,
     "especie": String,
     "Norma Oficial Mexicana NOM-059": String,
     "Observaciones NOM 059": String,
@@ -31,7 +31,7 @@
     "Categoria taxonómica": String,
     "Estatus": String,
     "URL Enciclovida": String,
-    "Bibliografía": String
+    "Bibliografia": String
   }
     Ejemplares (OPCIONAL): [
         {
@@ -122,12 +122,12 @@
         "Nombre_cientifico": String,
         "Nombres_comunes": String,
         "Reino": String,
-        "división": String,
+        "division": String,
         "phylum": String,
         "clase": String,
         "orden": String,
         "familia": String,
-        "género": String,
+        "genero": String,
         "especie": String,
         "Norma_Oficial_Mexicana_NOM059": String,
         "Observaciones_NOM059": String,
@@ -142,7 +142,7 @@
         "Categoria_taxonomica": String,
         "Estatus": String,
         "URL_Enciclovida": String,
-        "Bibliografía": String,
+        "Bibliografia": String,
         "Ejemplares": [
             {
                 "idejemplar": String,
@@ -194,12 +194,12 @@
     "Nombre_cientifico": String,
     "Nombres_comunes": String,
     "Reino": String,
-    "división": String,
+    "division": String,
     "phylum": String,
     "clase": String,
     "orden": String,
     "familia": String,
-    "género": String,
+    "genero": String,
     "especie": String,
     "Norma_Oficial_Mexicana_NOM059": String,
     "Observaciones_NOM059": String,
@@ -214,7 +214,7 @@
     "Categoria_taxonomica": String,
     "Estatus": String,
     "URL_Enciclovida": String,
-    "Bibliografía": String,
+    "Bibliografia": String,
     "Ejemplares": [
         {
             "idejemplar": String,

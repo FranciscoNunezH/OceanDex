@@ -26,30 +26,34 @@ var controller = {
     getDataEspecifica: (req, res) => {
         let Nombre_cientifico = req.params.nombreCientifico;
 
-        dataModel.findOne({ Nombre_cientifico }).exec((err, dato) => {
-            if (err)
-                return res
-                    .status(500)
-                    .send({ message: "Ha ocurrido un error" });
+        dataModel
+            .findOne({ "Nombre científico": Nombre_cientifico })
+            .exec((err, dato) => {
+                if (err)
+                    return res
+                        .status(500)
+                        .send({ message: "Ha ocurrido un error" });
 
-            if (!dato)
-                return res.status(404).send({
-                    message:
-                        "Ha ocurrido un error: Animal de la busqueda no encontrado",
+                if (!dato)
+                    return res.status(404).send({
+                        message:
+                            "Ha ocurrido un error: Animal de la busqueda no encontrado",
+                    });
+
+                let datosLimpios = limpiarDatos(dato);
+
+                let URL_Enciclovida = datosLimpios.URL_Enciclovida.split("/");
+
+                let codigo =
+                    URL_Enciclovida[URL_Enciclovida.length - 1].split("-");
+
+                let ejemplares_url = `https://enciclovida.mx/especies/${codigo[0]}/consulta-registros.json?coleccion=snib&formato=json`;
+
+                axios.get(ejemplares_url).then((response) => {
+                    datosLimpios.Ejemplares = response.data;
+                    return res.status(200).send(datosLimpios);
                 });
-
-            let datosLimpios = limpiarDatos(dato);
-
-            let URL_Enciclovida = datosLimpios.URL_Enciclovida.split("/");
-            let codigo = URL_Enciclovida[URL_Enciclovida.length - 1].split("-");
-
-            let ejemplares_url = `https://enciclovida.mx/especies/${codigo[0]}/consulta-registros.json?coleccion=snib&formato=json`;
-
-            axios.get(ejemplares_url).then((response) => {
-                datosLimpios.Ejemplares = response.data;
-                return res.status(200).send(datosLimpios);
             });
-        });
     },
 
     getDataNombres: (req, res) => {
@@ -73,55 +77,59 @@ var controller = {
     getDataImagen: (req, res) => {
         let Nombre_cientifico = req.params.nombreCientifico;
 
-        dataModel.findOne({ Nombre_cientifico }).exec((err, dato) => {
-            if (err)
-                return res
-                    .status(500)
-                    .send({ message: "Ha ocurrido un error" });
+        dataModel
+            .findOne({ "Nombre científico": Nombre_cientifico })
+            .exec((err, dato) => {
+                if (err)
+                    return res
+                        .status(500)
+                        .send({ message: "Ha ocurrido un error" });
 
-            if (!dato)
-                return res.status(404).send({
-                    message:
-                        "Ha ocurrido un error: Animal de la busqueda no encontrado",
+                if (!dato)
+                    return res.status(404).send({
+                        message:
+                            "Ha ocurrido un error: Animal de la busqueda no encontrado",
+                    });
+
+                axios.get(dato["URL Enciclovida"]).then((response) => {
+                    const html = response.data;
+                    const $ = cheerio.load(html);
+
+                    $("a.dropdown-item:contains('Naturalista')", html).each(
+                        function () {
+                            let urlImg = $(this).attr("href");
+                            urlImg = urlImg.split("/");
+
+                            axios
+                                .get(
+                                    "https://api.inaturalist.org/v1/taxa/" +
+                                        urlImg[urlImg.length - 1]
+                                )
+                                .then((response) => {
+                                    if (
+                                        response.data.results[0] &&
+                                        response.data.results[0]
+                                            .taxon_photos[0] &&
+                                        response.data.results[0].taxon_photos[0]
+                                            .photo &&
+                                        response.data.results[0].taxon_photos[0]
+                                            .photo.original_url
+                                    ) {
+                                        return res.status(200).send({
+                                            img: response.data.results[0]
+                                                .taxon_photos[0].photo
+                                                .original_url,
+                                        });
+                                    } else {
+                                        return res.status(200).send({
+                                            img: "",
+                                        });
+                                    }
+                                });
+                        }
+                    );
                 });
-
-            axios.get(dato.URL_Enciclovida).then((response) => {
-                const html = response.data;
-                const $ = cheerio.load(html);
-
-                $("a.dropdown-item:contains('Naturalista')", html).each(
-                    function () {
-                        let urlImg = $(this).attr("href");
-                        urlImg = urlImg.split("/");
-
-                        axios
-                            .get(
-                                "https://api.inaturalist.org/v1/taxa/" +
-                                    urlImg[urlImg.length - 1]
-                            )
-                            .then((response) => {
-                                if (
-                                    response.data.results[0] &&
-                                    response.data.results[0].taxon_photos[0] &&
-                                    response.data.results[0].taxon_photos[0]
-                                        .photo &&
-                                    response.data.results[0].taxon_photos[0]
-                                        .photo.original_url
-                                ) {
-                                    return res.status(200).send({
-                                        img: response.data.results[0]
-                                            .taxon_photos[0].photo.original_url,
-                                    });
-                                } else {
-                                    return res.status(200).send({
-                                        img: "",
-                                    });
-                                }
-                            });
-                    }
-                );
             });
-        });
     },
 
     setData: (req, res) => {
@@ -131,12 +139,12 @@ var controller = {
         data.Nombre_cientifico = body["Nombre científico"];
         data.Nombres_comunes = body["Nombres comunes"];
         data.Reino = body["Reino"];
-        data.división = body["división"];
+        data.division = body["división"];
         data.phylum = body["phylum"];
         data.clase = body["clase"];
         data.orden = body["orden"];
         data.familia = body["familia"];
-        data.género = body["género"];
+        data.genero = body["género"];
         data.especie = body["especie"];
         data.Norma_Oficial_Mexicana_NOM059 =
             body["Norma Oficial Mexicana NOM-059"];
@@ -156,7 +164,7 @@ var controller = {
         data.Categoria_taxonomica = body["Categoria taxonómica"];
         data.Estatus = body["Estatus"];
         data.URL_Enciclovida = body["URL Enciclovida"];
-        data.Bibliografía = body["Bibliografía"];
+        data.Bibliografia = body["Bibliografía"];
 
         data.save((err, save) => {
             if (err)
@@ -176,8 +184,6 @@ var controller = {
     setDataEjemplares: (req, res) => {
         var body = req.body;
         var Nombre_cientifico = body.especievalidabusqueda;
-
-        console.log(body);
 
         dataModel
             .updateOne(
@@ -208,64 +214,69 @@ const limpiarDatos = (arr) => {
         let newArr = [];
         arr.forEach((dato) => {
             newArr.push({
-                Nombre_cientifico: dato.Nombre_cientifico,
-                Nombres_comunes: dato.Nombres_comunes,
-                Reino: dato.Reino,
-                división: dato.división,
-                phylum: dato.phylum,
-                clase: dato.clase,
-                orden: dato.orden,
-                familia: dato.familia,
-                género: dato.género,
-                especie: dato.especie,
+                Nombre_cientifico: dato["Nombre científico"],
+                Nombres_comunes: dato["Nombres comunes"],
+                Reino: dato["Reino"],
+                division: dato["división"],
+                phylum: dato["phylum"],
+                clase: dato["clase"],
+                orden: dato["orden"],
+                familia: dato["familia"],
+                genero: dato["género"],
+                especie: dato["especie"],
                 Norma_Oficial_Mexicana_NOM059:
-                    dato.Norma_Oficial_Mexicana_NOM059,
-                Observaciones_NOM059: dato.Observaciones_NOM059,
+                    dato["Norma Oficial Mexicana NOM-059"],
+                Observaciones_NOM059: dato["Observaciones NOM 059"],
                 Union_Internacional_para_la_Conservacion_de_la_Naturaleza_IUCN:
-                    dato.Union_Internacional_para_la_Conservacion_de_la_Naturaleza_IUCN,
-                Observaciones_IUCN: dato.Observaciones_IUCN,
-                Comercio_Internacional_CITES: dato.Comercio_Internacional_CITES,
-                Observaciones_CITES: dato.Observaciones_CITES,
-                Tipo_distribucion: dato.Tipo_distribucion,
-                Ambiente: dato.Ambiente,
-                Numero_de_registros: dato.Numero_de_registros,
-                Identificador_unico: dato.Identificador_unico,
-                Categoria_taxonomica: dato.Categoria_taxonomica,
-                Estatus: dato.Estatus,
-                URL_Enciclovida: dato.URL_Enciclovida,
-                Bibliografía: dato.Bibliografía,
+                    dato[
+                        "Unión Internacional para la Conservación de la Naturaleza (IUCN)"
+                    ],
+                Observaciones_IUCN: dato["Observaciones IUCN"],
+                Comercio_Internacional_CITES:
+                    dato["Comercio Internacional (CITES)"],
+                Observaciones_CITES: dato["Observaciones CITES"],
+                Tipo_distribucion: dato["Tipo distribución"],
+                Ambiente: dato["Ambiente"],
+                Numero_de_registros: dato["Número de registros"],
+                Identificador_unico: dato["Identificador único"],
+                Categoria_taxonomica: dato["Categoria taxonómica"],
+                Estatus: dato["Estatus"],
+                URL_Enciclovida: dato["URL Enciclovida"],
+                Bibliografia: dato["Bibliografía"],
             });
         });
 
         return newArr;
     } else {
         return {
-            Nombre_cientifico: arr.Nombre_cientifico,
-            Nombres_comunes: arr.Nombres_comunes,
-            Reino: arr.Reino,
-            división: arr.división,
-            phylum: arr.phylum,
-            clase: arr.clase,
-            orden: arr.orden,
-            familia: arr.familia,
-            género: arr.género,
-            especie: arr.especie,
-            Norma_Oficial_Mexicana_NOM059: arr.Norma_Oficial_Mexicana_NOM059,
-            Observaciones_NOM059: arr.Observaciones_NOM059,
+            Nombre_cientifico: arr["Nombre científico"],
+            Nombres_comunes: arr["Nombres comunes"],
+            Reino: arr["Reino"],
+            division: arr["división"],
+            phylum: arr["phylum"],
+            clase: arr["clase"],
+            orden: arr["orden"],
+            familia: arr["familia"],
+            genero: arr["género"],
+            especie: arr["especie"],
+            Norma_Oficial_Mexicana_NOM059:
+                arr["Norma Oficial Mexicana NOM-059"],
+            Observaciones_NOM059: arr["Observaciones NOM 059"],
             Union_Internacional_para_la_Conservacion_de_la_Naturaleza_IUCN:
-                arr.Union_Internacional_para_la_Conservacion_de_la_Naturaleza_IUCN,
-            Observaciones_IUCN: arr.Observaciones_IUCN,
-            Comercio_Internacional_CITES: arr.Comercio_Internacional_CITES,
-            Observaciones_CITES: arr.Observaciones_CITES,
-            Tipo_distribucion: arr.Tipo_distribucion,
-            Ambiente: arr.Ambiente,
-            Numero_de_registros: arr.Numero_de_registros,
-            Identificador_unico: arr.Identificador_unico,
-            Categoria_taxonomica: arr.Categoria_taxonomica,
-            Estatus: arr.Estatus,
-            URL_Enciclovida: arr.URL_Enciclovida,
-            Bibliografía: arr.Bibliografía,
-            Ejemplares: [],
+                arr[
+                    "Unión Internacional para la Conservación de la Naturaleza (IUCN)"
+                ],
+            Observaciones_IUCN: arr["Observaciones IUCN"],
+            Comercio_Internacional_CITES: arr["Comercio Internacional (CITES)"],
+            Observaciones_CITES: arr["Observaciones CITES"],
+            Tipo_distribucion: arr["Tipo distribución"],
+            Ambiente: arr["Ambiente"],
+            Numero_de_registros: arr["Número de registros"],
+            Identificador_unico: arr["Identificador único"],
+            Categoria_taxonomica: arr["Categoria taxonómica"],
+            Estatus: arr["Estatus"],
+            URL_Enciclovida: arr["URL Enciclovida"],
+            Bibliografia: arr["Bibliografía"],
         };
     }
 };
@@ -274,8 +285,8 @@ const limpiarNombres = (arr) => {
     let newArr = [];
     arr.forEach((dato) => {
         newArr.push({
-            Nombre_cientifico: dato.Nombre_cientifico,
-            Nombres_comunes: dato.Nombres_comunes,
+            Nombre_cientifico: dato["Nombre científico"],
+            Nombres_comunes: dato["Nombres comunes"],
         });
     });
     return newArr;

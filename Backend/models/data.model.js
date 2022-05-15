@@ -4,12 +4,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var dataSchema = Schema({
-    Nombre_cientifico: {
+    "Nombre científico": {
         type: String,
-        unique: true,
         trim: true,
     },
-    Nombres_comunes: {
+    "Nombres comunes": {
         type: String,
         trim: true,
     },
@@ -45,31 +44,31 @@ var dataSchema = Schema({
         type: String,
         trim: true,
     },
-    Norma_Oficial_Mexicana_NOM059: {
+    "Norma Oficial Mexicana NOM-059": {
         type: String,
         trim: true,
     },
-    Observaciones_NOM059: {
+    "Observaciones NOM 059": {
         type: String,
         trim: true,
     },
-    Union_Internacional_para_la_Conservacion_de_la_Naturaleza_IUCN: {
+    "Unión Internacional para la Conservación de la Naturaleza (IUCN)": {
         type: String,
         trim: true,
     },
-    Observaciones_IUCN: {
+    "Observaciones IUCN": {
         type: String,
         trim: true,
     },
-    Comercio_Internacional_CITES: {
+    "Comercio Internacional (CITES)": {
         type: String,
         trim: true,
     },
-    Observaciones_CITES: {
+    "Observaciones CITES": {
         type: String,
         trim: true,
     },
-    Tipo_distribucion: {
+    "Tipo distribución": {
         type: String,
         trim: true,
     },
@@ -77,15 +76,15 @@ var dataSchema = Schema({
         type: String,
         trim: true,
     },
-    Numero_de_registros: {
+    "Número de registros": {
         type: Number,
         trim: true,
     },
-    Identificador_unico: {
+    "Identificador único": {
         type: Number,
         trim: true,
     },
-    Categoria_taxonomica: {
+    "Categoria taxonómica": {
         type: String,
         trim: true,
     },
@@ -93,7 +92,7 @@ var dataSchema = Schema({
         type: String,
         trim: true,
     },
-    URL_Enciclovida: {
+    "URL Enciclovida": {
         type: String,
         trim: true,
     },
