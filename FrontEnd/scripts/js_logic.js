@@ -1,6 +1,6 @@
 // initialize the map on the "map" div with a given center and zoom
-var map = L.map('map').setView([51.505, -0.09], 13);
+var map = L.map('map').setView([20.674089, -105.264793], 13);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);

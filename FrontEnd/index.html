@@ -13,7 +13,6 @@
   crossorigin="anonymous"></script>
 
   <!-- Css -->
-
   <link rel="stylesheet"  type="text/css" href="mapa.css" />
   <!-- Usar Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" 
@@ -29,8 +28,8 @@
       <h1 class="display-1 text-color">OceanDex</h1>
     </figure>
   <!-- input y Button -->
-    <div class="row">
-      <div class="col-md-4 offset-md-4">
+    <div class="row justify-content-center">
+      <div class="col-md-auto">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Especie" aria-label="specie" aria-describedby="button-addon2">
           <button class="btn btn-secondary" type="button" id="button-addon2">Busqueda</button>
@@ -39,7 +38,7 @@
   </div>
 
   <!-- Contenedor con el mapa-->
-  <div id="map" class="margin-top"></div>
+  <div class="container-fluid" id="map" class="margin-top"></div>
 
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
@@ -53,7 +52,7 @@
   <div class="container-fluid bottom">
       <ul class="nav justify-content-center">
         <li class="nav-item nav-link">
-          <a class="nav-link active" aria-current="page" href="#">Acerca de</a>
+          <a class="nav-link active" aria-current="page" href="#">Api</a>
         </li>
         <li class="nav-item nav-link">
           <a class="nav-link" href="#">Equipo</a>
@@ -62,7 +61,7 @@
           <a class="nav-link" href="#">LaunchX</a>
         </li>
         <li class="nav-item nav-link">
-          <a class="nav-link">Api</a>
+          <a class="nav-link">Acerca de</a>
         </li>
       </ul>
 
