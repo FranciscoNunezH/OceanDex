@@ -28,6 +28,16 @@ especie animal maritimo del territorio mexicano (Por ahora)
 
 [TikTok Informativo]()
 
+## Imagenes del proyecto
+
+
+![image](https://user-images.githubusercontent.com/89151289/168511793-18ca1d93-6e79-450b-ae7d-9b84c0e5cf33.png)
+
+![image](https://user-images.githubusercontent.com/89151289/168511873-9c20fdaf-0ccd-47b5-9aac-10e583921209.png)
+
+![image](https://user-images.githubusercontent.com/89151289/168511745-31d007a6-bfc5-478b-97af-385bfc2cea51.png)
+
+
 ## Trabajos Futuros
 - [x] **~~Barra de busqueda funcional~~**
 - [ ] **Cargar img de especie en pagina de inicio**
