@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+
+__author__ = "Francisco Nuñez Hernandez, Erick Infante, José Antonio Gómez, Carlos Iván Aguilar"
+__copyright__ = "Copyright 2022, OceanDex"
+__credits__ = ["Francisco Nuñez Hernandez", "Erick Infante", "José Antonio Gómez",
+                    "Carlos Iván Aguilar"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "?"
+__email__ = "?"
+__status__ = "?"
+
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import os
