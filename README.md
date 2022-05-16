@@ -26,7 +26,7 @@ especie animal maritimo del territorio mexicano (Por ahora)
 
 [Repositorio completo](https://github.com/FranciscoNunezH/OceanDex).
 
-[TikTok Informativo]()
+[TikTok Informativo](https://vm.tiktok.com/ZMLcTvvUu/?k=1)
 
 ## Imagenes del proyecto
 
