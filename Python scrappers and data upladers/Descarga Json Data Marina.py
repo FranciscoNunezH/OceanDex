@@ -19,7 +19,7 @@ chrome_driver_path = dir + "\chromedriver.exe"
 # create a new Chrome session
 driver = webdriver.Chrome(chrome_driver_path)
 driver.implicitly_wait(30)
-driver.maximize_window()
+# driver.maximize_window()
 
 # Preguntamos al Usuario por el archivo
 root = tk.Tk()
