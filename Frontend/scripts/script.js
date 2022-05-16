@@ -14,7 +14,7 @@ fetch("https://ocean-dex-api.herokuapp.com/api/consultar-nombres")
             const link = card.querySelector("[data-card-link]");
             const text = card.querySelector("[data-card-text]");
             const attr = document.createAttribute("href");
-            attr.value = `./info?nombre=${especie.Nombre_cientifico}`;
+            attr.value = `./info.html?nombre=${especie.Nombre_cientifico}`;
             card.setAttributeNode(attr);
             text.textContent = especie.Nombre_cientifico;
             especiesContainer.append(card);

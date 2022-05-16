@@ -96,22 +96,14 @@ img.logo-oceandex {
     height: 40px;
 }
 
-.buscador input,
-.buscador button {
+.buscador input {
     outline: none;
     font-size: 20px;
     border: none;
-}
-
-.buscador input {
-    width: 80%;
+    width: 100%;
+    min-width: 250px;
     padding: 10px;
-    border-radius: 5px 0px 0px 5px;
-}
-
-.buscador button {
-    width: 20%;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 5px;
 }
 
 /* CONTENEDOR ESPECIES */
@@ -124,7 +116,7 @@ img.logo-oceandex {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
 }
 
 .card-especies {
@@ -188,4 +180,27 @@ footer {
 
 .footer-links a:hover {
     color: #0898bb;
+}
+
+@media (max-width: 1400px) {
+    #contenido-general {
+        padding: 0px 4%;
+    }
+}
+
+@media (max-width: 600px) {
+    #contenido-general {
+        padding: 0px 4%;
+    }
+
+    #contenedor-especies {
+        justify-content: space-evenly;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-links {
+        gap: 20px;
+        font-size: 14px;
+    }
 }

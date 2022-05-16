@@ -24,3 +24,10 @@ footer {
 .footer-links a:hover {
     color: #0898bb;
 }
+
+@media (max-width: 500px) {
+    .footer-links {
+        gap: 20px;
+        font-size: 14px;
+    }
+}
