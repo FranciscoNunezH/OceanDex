@@ -29,12 +29,32 @@
             <div class="limitador" id="contenido-general">
                 <!-- * BUSCADOR -->
                 <div class="buscador">
-                    <input type="input" placeholder="Filtrar por nombre" />
+                    <input
+                        type="input"
+                        placeholder="Filtrar por nombre"
+                        class="input-filtro"
+                    />
                     <button>Filtrar</button>
                 </div>
 
                 <div id="contenedor-especies">
-                    <div class="container-spinner">
+                    <template data-card-template>
+                        <a class="card-especies" data-card-link>
+                            <div class="card-especies_img" data-card-img>
+                                <img
+                                    data-card-img_img
+                                    src="http://via.placeholder.com/250x338?text=?"
+                                    alt="imagen"
+                                />
+                            </div>
+                            <div
+                                class="card-especies_nombre"
+                                data-card-text
+                            ></div>
+                        </a>
+                    </template>
+
+                    <div class="container-spinner" spinner>
                         <div class="cargando"></div>
                     </div>
                 </div>

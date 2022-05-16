@@ -115,11 +115,15 @@ img.logo-oceandex {
 }
 
 /* CONTENEDOR ESPECIES */
+.hidden {
+    display: none !important;
+}
 
 #contenedor-especies {
     margin-top: 30px;
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
     gap: 20px;
 }
 

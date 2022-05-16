@@ -13,10 +13,15 @@ if (!params.nombre) {
 var map = L.map("map").setView([24.334917, -103.185994], 5);
 
 L.tileLayer(
-    "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+    "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=SITCjiQQojKS2PVJ6BOa",
     {
         attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+        maxZoom: 18,
+        id: "mapbox/streets-v11",
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: "your.mapbox.access.token",
     }
 ).addTo(map);
 
