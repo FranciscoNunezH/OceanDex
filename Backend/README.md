@@ -275,7 +275,8 @@
 
 ```
 {
-  "img": String
+  "img": String,
+  "wikipedia_url": String
 }
 ```
 
