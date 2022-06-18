@@ -116,12 +116,18 @@ var controller = {
                                             .photo.original_url
                                     ) {
                                         return res.status(200).send({
+                                            wikipedia_url:
+                                                response.data.results[0]
+                                                    .wikipedia_url,
                                             img: response.data.results[0]
                                                 .taxon_photos[0].photo
                                                 .original_url,
                                         });
                                     } else {
                                         return res.status(200).send({
+                                            wikipedia_url:
+                                                response.data.results[0]
+                                                    .wikipedia_url,
                                             img: "",
                                         });
                                     }
