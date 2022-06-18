@@ -31,6 +31,7 @@ fetch("https://ocean-dex-api.herokuapp.com/api/consultar/" + params.nombre)
     })
     .then(especie => {
         especieData = especie;
+        incorporarTexto();
         obterImagen();
     })
     .catch(err => {
@@ -44,9 +45,10 @@ function obterImagen() {
         .then(data => {
             return data.json();
         })
-        .then(imagen => {
-            especieData.img = imagen.img;
-            incorporarTexto();
+        .then(datos => {
+            especieData.img = datos.img;
+            especieData.wikipedia_url = datos.wikipedia_url;
+            incorporarImgYWiky();
         })
         .catch(err => {
             console.log(err);
@@ -56,6 +58,8 @@ function obterImagen() {
 function incorporarTexto() {
     document.querySelector(".nombre_cientifico").textContent =
         especieData.Nombre_cientifico;
+    document.querySelector(".nombre_comun").textContent =
+        especieData.Nombres_comunes;
     document.querySelector(".familia").textContent = especieData.familia;
     document.querySelector(".especie").textContent = especieData.especie;
     document.querySelector(".ambiente").textContent = especieData.Ambiente;
@@ -63,10 +67,24 @@ function incorporarTexto() {
         especieData.Numero_de_registros;
     document.querySelector(".estatus").textContent = especieData.Estatus;
     document.querySelector(".clase").textContent = especieData.clase;
+}
 
-    document.querySelector(
-        ".imagen-img"
-    ).innerHTML = `<img src="${especieData.img}" alt="${especieData.Nombre_cientifico}" />`;
+function incorporarImgYWiky() {
+    if (especieData.img != "") {
+        document.querySelector(
+            ".imagen-img"
+        ).innerHTML = `<img src="${especieData.img}" alt="${especieData.Nombre_cientifico}" />`;
+    } else {
+        document.querySelector(
+            ".imagen-img"
+        ).innerHTML = `<img src="http://via.placeholder.com/250x250?text=OceanDex" alt="OceanDex imagen no encontrada" />`;
+    }
+
+    if (especieData.wikipedia_url != null) {
+        document.querySelector(
+            ".wikipedia-link"
+        ).innerHTML = `<a href="${especieData.wikipedia_url}" target="_blank">Wikipedia</a>`;
+    }
 
     agregarMarcadores();
 }
