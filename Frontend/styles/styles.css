@@ -123,7 +123,7 @@ img.logo-oceandex {
     height: 400px;
     width: 250px;
     display: grid;
-    grid-template-rows: 85% 15%;
+    grid-template-rows: 75% 15% 10%;
     border: 2px solid var(--azul-borde-card);
     background: #fff3;
     border-radius: 10px;
@@ -154,6 +154,15 @@ img.logo-oceandex {
     font-weight: 600;
     text-align: center;
     color: var(--azul-obscuro-texto);
+}
+
+.card-especies_nombreC {
+    font-size: 17px;
+    padding-top: 0px;
+    text-align: center;
+    color: var(--azul-obscuro-texto);
+    width: 95%;
+    margin: 0 auto;
 }
 
 /* * FOOTER */
